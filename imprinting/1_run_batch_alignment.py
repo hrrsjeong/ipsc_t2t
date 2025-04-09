@@ -3,7 +3,7 @@ import argparse
 import os
 
 def run_minimap2(target_fasta, query_fasta, output_paf):
-    """Runs minimap2 for whole-genome alignment.
+    """Runs minimap2 for whole-genome alignment with -K 4G option.
 
     Args:
         target_fasta (str): Path to the target (reference) FASTA file (hg38).
@@ -15,6 +15,7 @@ def run_minimap2(target_fasta, query_fasta, output_paf):
             "minimap2",
             "-ax", "asm5",  # Recommended preset for assembly-to-reference alignment
             "-secondary=no",  # Suppress secondary alignments
+            "-K", "4G",      # Added option for larger k-mer table
             target_fasta,
             query_fasta,
             "-o", output_paf
